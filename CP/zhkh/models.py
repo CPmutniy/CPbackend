@@ -3,10 +3,14 @@ from django.db import models
 
 class Company(models.Model):
     name = models.CharField(max_length=256)
+    phone = models.CharField(max_length=256)
+    inn = models.CharField(max_length=256)
 
 
 class Adress(models.Model):
     name = models.CharField(max_length=256)
+    building_type = models.CharField(max_length=256)
+    cad_number = models.CharField(max_length=256)
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
 
 
@@ -26,6 +30,7 @@ class Voting(models.Model):
 class Question(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=256)
+    voting = models.ForeignKey(Voting, on_delete=models.CASCADE)
 
 
 class Answer(models.Model):
