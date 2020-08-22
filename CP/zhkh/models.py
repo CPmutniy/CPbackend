@@ -30,6 +30,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     time = models.DateTimeField()
     answer = models.CharField(max_length=256)
     signature = models.BinaryField()
