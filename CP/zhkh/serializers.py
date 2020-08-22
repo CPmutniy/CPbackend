@@ -5,7 +5,7 @@ from . import models
 class CompanySerializer(ModelSerializer):
     class Meta:
         model = models.Company        
-        fields = ('id', 'name', 'phone', 'inn')
+        fields = ('id', 'name', 'phone', 'inn', 'owner')
 
 
 class AdressSerializer(ModelSerializer):

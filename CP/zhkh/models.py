@@ -14,6 +14,11 @@ class Adress(models.Model):
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
 
 
+class Flat(models.Model):
+    adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
+    square = models.IntegerField()    
+
+
 class Person(models.Model):
     surname = models.CharField(max_length=256)
     name = models.CharField(max_length=256)
@@ -25,6 +30,8 @@ class Person(models.Model):
 
 class Voting(models.Model):
     name = models.CharField(max_length=256)
+    initiator = models.ForeignKey(Person, on_delete=models.CASCADE)
+    signature = models.BinaryField()
 
 
 class Question(models.Model):
