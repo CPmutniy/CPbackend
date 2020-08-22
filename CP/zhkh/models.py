@@ -16,6 +16,7 @@ class Person(models.Model):
     patronymic = models.CharField(max_length=256)
     adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
     publick_key = models.BinaryField()
+    state = models.BooleanField()
 
 
 class Voting(models.Model):
