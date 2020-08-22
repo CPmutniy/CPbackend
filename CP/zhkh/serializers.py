@@ -55,17 +55,27 @@ class PersonSerializerFlat(ModelSerializer):
 class VotingSerializer(ModelSerializer):
     class Meta:
         model = models.Voting        
-        fields = ('id', 'name', 'adress', 'initiator', 'initiatorinfo')
+        fields = ('id', 'name', 'adress', 'initiator', 'initiatorinfo', 'questionsinfo')
 
     initiatorinfo = SerializerMethodField()
+    questionsinfo = SerializerMethodField()
 
     def get_initiatorinfo(self, obj):
         return PersonSerializerFlat().to_representation(obj.get_initiator())
 
+    def get_questionsinfo(self, obj):
+        return [QuestionSerializer().to_representation(x) for x in obj.get_questions()]
+
+
 class QuestionSerializer(ModelSerializer):
     class Meta:
         model = models.Question        
-        fields = ('id', 'name', 'description', 'voting')
+        fields = ('id', 'name', 'description', 'voting', 'answersinfo')
+
+    answersinfo = SerializerMethodField()
+
+    def get_answersinfo(self, obj):
+        return [AnswerSerializer().to_representation(x) for x in obj.get_answers()]
 
 
 class AnswerSerializer(ModelSerializer):

@@ -49,11 +49,17 @@ class Voting(models.Model):
     def get_initiator(self):
         return self.initiator
 
+    def get_questions(self):
+        return Question.objects.filter(voting=self.id)
+        
 
 class Question(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=256)
     voting = models.ForeignKey(Voting, on_delete=models.CASCADE)
+
+    def get_answers(self):
+        return Answer.objects.filter(question=self.id)
 
 
 class Answer(models.Model):
