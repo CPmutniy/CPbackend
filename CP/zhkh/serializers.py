@@ -5,7 +5,7 @@ from . import models
 class CompanySerializer(ModelSerializer):
     class Meta:
         model = models.Company        
-        fields = ('id', 'name', 'phone', 'inn', 'owner')
+        fields = ('id', 'name', 'phone', 'inn')
 
 
 class AdressSerializer(ModelSerializer):
@@ -23,7 +23,7 @@ class PersonSerializer(ModelSerializer):
 class VotingSerializer(ModelSerializer):
     class Meta:
         model = models.Voting        
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'adress')
 
 
 class QuestionSerializer(ModelSerializer):
