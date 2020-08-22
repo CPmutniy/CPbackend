@@ -22,7 +22,7 @@ class AdressSerializer(ModelSerializer):
 class FlatSerializer(ModelSerializer):
     class Meta:
         model = models.Flat        
-        fields = ('id', 'adress', 'square', 'adressinfo')
+        fields = ('id', 'adress', 'square', 'adressinfo', 'number')
 
     adressinfo = SerializerMethodField()
 

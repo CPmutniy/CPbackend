@@ -20,7 +20,8 @@ class Adress(models.Model):
 class Flat(models.Model):
     adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
     square = models.IntegerField()
-  
+    number = models.IntegerField()
+
     def get_adress(self):
         return self.adress
 
