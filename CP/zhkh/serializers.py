@@ -1,37 +1,38 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from . import models
 
+
 class CompanySerializer(ModelSerializer):
     class Meta:
         model = models.Company        
-        fields = ('name', 'id')
+        fields = ('id', 'name', 'phone', 'inn')
 
 
 class AdressSerializer(ModelSerializer):
     class Meta:
         model = models.Adress        
-        fields = ('name', 'id')
+        fields = ('id', 'name', 'building_type', 'cad_number', 'company')
 
 
 class PersonSerializer(ModelSerializer):
     class Meta:
         model = models.Person        
-        fields = ('name', 'id')
+        fields = ('id', 'name', 'surname', 'patronymic', 'adress', 'state', 'publick_key')
 
 
 class VotingSerializer(ModelSerializer):
     class Meta:
         model = models.Voting        
-        fields = ('name', 'id')
+        fields = ('id', 'name')
 
 
 class QuestionSerializer(ModelSerializer):
     class Meta:
         model = models.Question        
-        fields = ('name', 'id')
+        fields = ('id', 'name', 'description', 'voting')
 
 
 class AnswerSerializer(ModelSerializer):
     class Meta:
         model = models.Answer        
-        fields = ('answer', 'id')
+        fields = ('id', 'answer', 'person', 'question', 'time', 'signature')
