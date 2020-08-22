@@ -34,7 +34,7 @@ class Person(models.Model):
     name = models.CharField(max_length=256)
     patronymic = models.CharField(max_length=256)
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
-    publick_key = models.CharField(max_length=512)
+    publick_key = models.CharField(max_length=2048)
     state = models.BooleanField()
 
     def get_flat(self):
