@@ -14,16 +14,28 @@ class AdressSerializer(ModelSerializer):
         fields = ('id', 'name', 'building_type', 'cad_number', 'company')
 
 
+class FlatSerializer(ModelSerializer):
+    class Meta:
+        model = models.Adress        
+        fields = ('id', 'adress', 'square')
+
+
 class PersonSerializer(ModelSerializer):
     class Meta:
         model = models.Person        
-        fields = ('id', 'name', 'surname', 'patronymic', 'adress', 'state', 'publick_key')
+        fields = ('id', 'name', 'surname', 'patronymic', 'flat', 'flatinfo', 'state', 'publick_key')
+
+    flatinfo = SerializerMethodField()
+
+    def get_flatinfo(self, obj):
+        return FlatSerializer().to_representation(obj.get_flat())
+
 
 
 class VotingSerializer(ModelSerializer):
     class Meta:
         model = models.Voting        
-        fields = ('id', 'name', 'adress')
+        fields = ('id', 'name', 'adress', 'initiator')
 
 
 class QuestionSerializer(ModelSerializer):

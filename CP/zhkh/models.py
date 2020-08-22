@@ -24,9 +24,12 @@ class Person(models.Model):
     surname = models.CharField(max_length=256)
     name = models.CharField(max_length=256)
     patronymic = models.CharField(max_length=256)
-    adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
+    flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
     publick_key = models.BinaryField()
     state = models.BooleanField()
+
+    def get_flat(self):
+        return self.flat
 
 
 

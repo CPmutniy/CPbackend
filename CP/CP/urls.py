@@ -16,6 +16,4 @@ router.register('answer', views.AnswerViewSet, basename='answer')
 
 urlpatterns = router.urls
 
-urlpatterns.extend([
-    path('admin/', admin.site.urls),
-])
+urlpatterns.append(path('admin/', admin.site.urls))
