@@ -13,6 +13,7 @@ router.register('person', views.PersonViewSet, basename='person')
 router.register('voting', views.VotingViewSet, basename='voting')
 router.register('question', views.QuestionViewSet, basename='question')
 router.register('answer', views.AnswerViewSet, basename='answer')
+router.register('flat', views.FlatViewSet, basename='flat')
 
 urlpatterns = router.urls
 

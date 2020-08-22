@@ -14,10 +14,14 @@ class Adress(models.Model):
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
 
 
+
+
 class Flat(models.Model):
     adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
     square = models.IntegerField()
   
+    def get_adress(self):
+        return self.adress
 
 
 class Person(models.Model):

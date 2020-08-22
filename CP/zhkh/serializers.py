@@ -19,6 +19,8 @@ class FlatSerializer(ModelSerializer):
         model = models.Adress        
         fields = ('id', 'adress', 'square')
 
+    adressinfo = SerializerMethodField()
+
 
 class PersonSerializer(ModelSerializer):
     class Meta:
