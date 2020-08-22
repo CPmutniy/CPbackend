@@ -13,7 +13,8 @@ class Adress(models.Model):
     cad_number = models.CharField(max_length=256)
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
 
-
+    def get_company(self):
+        return self.company
 
 
 class Flat(models.Model):

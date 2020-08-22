@@ -11,7 +11,12 @@ class CompanySerializer(ModelSerializer):
 class AdressSerializer(ModelSerializer):
     class Meta:
         model = models.Adress        
-        fields = ('id', 'name', 'building_type', 'cad_number', 'company')
+        fields = ('id', 'name', 'building_type', 'cad_number', 'company', 'companyinfo')
+
+    companyinfo = SerializerMethodField()
+
+    def get_companyinfo(self, obj):
+    	return CompanySerializer().to_representation(obj.get_company())
 
 
 class FlatSerializer(ModelSerializer):
