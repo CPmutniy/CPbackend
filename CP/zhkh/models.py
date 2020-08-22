@@ -34,7 +34,7 @@ class Person(models.Model):
     name = models.CharField(max_length=256)
     patronymic = models.CharField(max_length=256)
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
-    publick_key = models.BinaryField()
+    publick_key = models.CharField(max_length=512)
     state = models.BooleanField()
 
     def get_flat(self):
@@ -67,4 +67,4 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     time = models.DateTimeField()
     answer = models.CharField(max_length=256)
-    signature = models.BinaryField()
+    signature = models.CharField(max_length=512)
