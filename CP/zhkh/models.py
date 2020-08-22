@@ -16,6 +16,9 @@ class Adress(models.Model):
     def get_company(self):
         return self.company
 
+    def get_votings(self):
+        return Voting.objects.filter(adress=self.id)
+
 
 class Flat(models.Model):
     adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
@@ -38,11 +41,13 @@ class Person(models.Model):
         return self.flat
 
 
-
 class Voting(models.Model):
     name = models.CharField(max_length=256)
     initiator = models.ForeignKey(Person, on_delete=models.CASCADE)
     adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
+
+    def get_initiator(self):
+        return self.initiator
 
 
 class Question(models.Model):
