@@ -13,27 +13,41 @@ class Adress(models.Model):
     cad_number = models.CharField(max_length=256)
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
 
+    def get_company(self):
+        return self.company
+
+    def get_votings(self):
+        return Voting.objects.filter(adress=self.id)
+
 
 class Flat(models.Model):
     adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
     square = models.IntegerField()
-  
+    number = models.IntegerField()
+
+    def get_adress(self):
+        return self.adress
 
 
 class Person(models.Model):
     surname = models.CharField(max_length=256)
     name = models.CharField(max_length=256)
     patronymic = models.CharField(max_length=256)
-    adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
+    flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
     publick_key = models.BinaryField()
     state = models.BooleanField()
 
+    def get_flat(self):
+        return self.flat
 
 
 class Voting(models.Model):
     name = models.CharField(max_length=256)
     initiator = models.ForeignKey(Person, on_delete=models.CASCADE)
     adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
+
+    def get_initiator(self):
+        return self.initiator
 
 
 class Question(models.Model):
