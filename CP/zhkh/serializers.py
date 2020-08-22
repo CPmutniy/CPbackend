@@ -16,10 +16,13 @@ class AdressSerializer(ModelSerializer):
 
 class FlatSerializer(ModelSerializer):
     class Meta:
-        model = models.Adress        
-        fields = ('id', 'adress', 'square')
+        model = models.Flat        
+        fields = ('id', 'adress', 'square', 'adressinfo')
 
     adressinfo = SerializerMethodField()
+
+    def get_adressinfo(self, obj):
+    	return AdressSerializer().to_representation(obj.get_adress())
 
 
 class PersonSerializer(ModelSerializer):
